@@ -47,7 +47,7 @@ class SortedArray
   end
 
   def map &block
-     i = 0
+     # i = 0
      new_arr = []
 
     # OR use each instead
@@ -61,13 +61,10 @@ class SortedArray
   end
 
   def map! &block
-     i = 0
      new_arr = []
 
-    while @internal_arr.size > i
-      new_arr << (yield @internal_arr[i])
-      i += 1
-    end
+     each { |element| new_arr << (yield element) }
+
     @internal_arr = new_arr
  
   end
@@ -75,6 +72,14 @@ class SortedArray
   def find &block
     #block should return true when you find the element you are looking for
     i = 0
+
+    # each do |element| 
+    #   if (yield element) == true
+    #     return element
+    #   end
+    # return nil
+    # end
+
     while i < @internal_arr.size
       if (yield @internal_arr[i]) == true
         return @internal_arr[i]
