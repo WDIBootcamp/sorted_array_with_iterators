@@ -49,7 +49,8 @@ describe SortedArray do
         it_should_behave_like "yield to all elements in sorted array", :map!
 
         it 'should replace value of each element with the value returned by block' do
-           sorted_array.map! {|el| el + 1 }.should_not == sorted_array
+           sorted_array.map! {|el| el + 1 }
+           sorted_array.internal_arr.should == [3,4,5,8,10]
         end
       end
     end
@@ -73,7 +74,7 @@ describe SortedArray do
     end
 
     it "combines all elements by applying a binary operation" do
-      sorted_array.inject { |el| el }.should = 25
+      sorted_array.inject(0) { |acc, el| acc + el }.should == 25
     end
   end
 end

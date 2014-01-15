@@ -61,11 +61,14 @@ class SortedArray
   end
 
   def map! &block
-     new_arr = []
 
-     each { |element| new_arr << (yield element) }
+  # each { |element| element = (yield element) }
 
-    @internal_arr = new_arr
+    i=0
+    while i < @internal_arr.size
+      @internal_arr[i] = (yield @internal_arr[i])
+      i += 1
+    end
  
   end
 
@@ -90,9 +93,10 @@ class SortedArray
 
   end
 
-  def inject acc=0, &block
+  def inject acc=nil, &block
     
-    each { |element| acc << (yield element) }
+    each { |element| acc = yield(acc, element) }
+    return acc
 
   end
 
