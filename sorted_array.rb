@@ -90,9 +90,9 @@ class SortedArray
 
   end
 
-  def inject acc=nil, &block
+  def inject acc=0, &block
     
-
+    each { |element| acc << (yield element) }
 
   end
 

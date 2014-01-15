@@ -43,13 +43,13 @@ describe SortedArray do
     describe "that update the original array" do
       describe :map! do
         it 'the original array should be updated' do
-          sorted_array.map {|el| el + 1 }.should_not == sorted_array
+          sorted_array.map! {|el| el + 1 }.should_not == sorted_array
         end
 
         it_should_behave_like "yield to all elements in sorted array", :map!
 
         it 'should replace value of each element with the value returned by block' do
-           sorted_array.map {|el| el + 1 }.should_not == sorted_array
+           sorted_array.map! {|el| el + 1 }.should_not == sorted_array
         end
       end
     end
@@ -58,7 +58,7 @@ describe SortedArray do
   describe :find do
 
     it "returns the first value for which the block is true" do
-      sorted_array.find { |num| num % 3 == 0}.should == 3
+      sorted_array.find { |num| num % 3 == 0 }.should == 3
       # pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"   
     end
 
@@ -72,8 +72,8 @@ describe SortedArray do
       end.to yield_successive_args([0,2], [2,3], [5,4],[9,7], [16,9]) 
     end
 
-    it "does not currently have any examples for it" do
-      pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
+    it "combines all elements by applying a binary operation" do
+      sorted_array.inject { |el| el }.should = 25
     end
   end
 end
